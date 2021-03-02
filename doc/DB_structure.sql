@@ -10,12 +10,12 @@ CREATE TABLE Persona (
 CREATE TABLE Utente (
 	persona_fk VARCHAR(10) REFERENCES Persona(codice_fiscale) PRIMARY KEY,
 	mail VARCHAR(255) NOT NULL,
-	password VARCHAR(20) NOT NULL, /*Cifrata*/
+	password VARCHAR(32) NOT NULL,	/* Cifrata in MD5 */
 	nickname VARCHAR(30) NOT NULL UNIQUE,
 	data_registrazione DATE NOT NULL
 );
 ALTER TABLE Utente
-ADD CONSTRAINT CHK_Mail CHECK(mail LIKE "*@*.__" OR "*@*.___");
+ADD CONSTRAINT Check_Mail CHECK(mail LIKE "%@%.__" OR "%@%.___");
 
 
 CREATE TABLE Qualifica (
